@@ -2,11 +2,12 @@ import React from 'react'
 import Part from '../Part/Part'
 
 const Content = (props) => {
+  let i = 0
     return (
       <>
-        <Part part={props.part1} exercises={props.exercises1} />
-        <Part part={props.part2} exercises={props.exercises2} />
-        <Part part={props.part3} exercises={props.exercises3} />
+        <Part part={props.array[i++]} exercises={props.array[i++]} />
+        <Part part={props.array[i++]} exercises={props.array[i++]} />
+        <Part part={props.array[i++]} exercises={props.array[i++]} />
       </>
     )
 }

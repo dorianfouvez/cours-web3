@@ -2,6 +2,8 @@ import React from 'react'
 import Header from '../Header/Header'
 import Content from '../Content/Content'
 import Total from '../Total/Total'
+import 'style.css'
+import './App.css'
 
 const App = () => {
   const course = 'Half Stack application development'
@@ -11,12 +13,14 @@ const App = () => {
   const exercises2 = 7
   const part3 = 'State of a component'
   const exercises3 = 14
+  const array = [ part1, exercises1, part2, exercises2, part3, exercises3 ]
 
   return (
     <div>
       <Header course={course} />
-      <Content part1={part1} exercises1={exercises1} part2={part2} exercises2={exercises2} part3={part3} exercises3={exercises3} />
+      <Content array={array} />
       <Total exercises={exercises1 + exercises2 + exercises3} />
+      <h1 className="header">Test</h1>
     </div>
   )
 }

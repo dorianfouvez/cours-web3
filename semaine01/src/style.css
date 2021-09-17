@@ -1,0 +1,9 @@
+body {
+    margin: 0;
+    background: rgb(53, 52, 52);
+    color: white;
+}
+
+.header {
+    color: hotpink;
+}
