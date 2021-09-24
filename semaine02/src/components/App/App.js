@@ -13,12 +13,12 @@ const App = () => {
         <Button
           onClick={changeCount}
           text='plus'
-          delta='+1'
+          delta={1}
         />
         <Button
           onClick={changeCount}
           text='zero'
-          delta='-1'
+          delta={-1}
         />     
         <Button
           onClick={changeCount}
