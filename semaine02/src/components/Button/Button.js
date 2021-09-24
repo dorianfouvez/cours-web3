@@ -2,8 +2,7 @@ import React from 'react'
 
 const Button = ({ changeCount, text, delta }) => {
   const handleClick = (e) => {
-    let i = parseInt(e.target.dataset.delta);
-    changeCount(i);
+    changeCount(parseInt(e.target.dataset.delta));
   }
 
   return (
