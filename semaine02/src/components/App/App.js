@@ -5,25 +5,28 @@ import Button from 'components/Button/Button'
 const App = () => {
     const [ counter, setCounter ] = useState(0)
   
-    const changeCount = (delta) => setCounter(counter + delta)
+    const changeCount = (delta) => {
+        localStorage.setItem('counter', JSON.stringify(counter + delta));
+        return setCounter(counter + delta);
+    }
   
     return (
       <div>
         <Display counter={counter}/>
         <Button
-          onClick={changeCount}
+          changeCount={changeCount}
           text='plus'
           delta={1}
         />
         <Button
-          onClick={changeCount}
+          changeCount={changeCount}
           text='zero'
-          delta={-1}
+          delta={-counter}
         />     
         <Button
-          onClick={changeCount}
+          changeCount={changeCount}
           text='minus'
-          delta={-counter}
+          delta={-1}
         />           
       </div>
     )

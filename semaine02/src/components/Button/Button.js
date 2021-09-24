@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Button = ({ onClick, text, delta }) => {
+const Button = ({ changeCount, text, delta }) => {
   const handleClick = (e) => {
     let i = parseInt(e.target.dataset.delta);
-    onClick(i);
+    changeCount(i);
   }
 
   return (
