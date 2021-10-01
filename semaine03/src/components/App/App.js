@@ -16,7 +16,7 @@ function App() {
     { text: 'bad', counter: bad },
     { text: 'all', counter: allStatistics },
     { text: 'average', counter: (good + neutral*0 + -bad)/allStatistics },
-    { text: 'positive', counter: good/allStatistics },
+    { text: 'positive', counter: good/allStatistics, signe:"%" },
   ];
 
   return (
@@ -44,7 +44,11 @@ const Statistics = (props) => {
   }
   // Ici on change Toutes les props lors d'un changement,
   // donc cela va, mais si il y a des renders separer, il faut eviter le map.
-  return props.all.map((statistic, i) => <><Statistic key={i} text={statistic.text} counter={statistic.counter} /><br/></>);
+  return props.all.map((statistic, i) => {
+    if(statistic.signe) 
+      return <><Statistic key={i} text={statistic.text} counter={statistic.counter} signe={statistic.signe} /><br/></>;
+    return <><Statistic key={i} text={statistic.text} counter={statistic.counter} /><br/></>;
+  });
 }
 
 export default App;

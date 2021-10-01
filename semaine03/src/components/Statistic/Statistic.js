@@ -1,5 +1,5 @@
 import React from 'react'
 
-const Display = ({ text, counter }) => <div>{text} {counter}</div>
+const Display = ({ text, counter, signe="" }) => <div>{text} {counter} {signe}</div>
 
 export default Display
