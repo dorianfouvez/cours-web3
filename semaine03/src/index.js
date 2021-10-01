@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom';
-import Loading from './components/Loading/Loading';
+import AppLoader from './components/AppLoader/AppLoader'
 
 ReactDOM.render(
-  <Loading />,
+  <AppLoader />,
   document.getElementById('root')
 );
