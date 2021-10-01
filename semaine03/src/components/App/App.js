@@ -33,9 +33,18 @@ function App() {
   const maxNumberForAnecdote = anecdotes.length-1;
   const [selected, setSelected] = useState(getRandomInt(maxNumberForAnecdote));
 
+  const [votes, setVotes] = useState(Array(anecdotes.length).fill(0));
+  const handleVotes = () => {
+    let copy = [...votes];
+    copy[selected]++;
+    setVotes(copy);
+  };
+
   return (
     <div>
       <div>{anecdotes[selected]}</div>
+      <div>has {votes[selected]} votes</div>
+      <Button changeCount={handleVotes} text='vote' count={votes[selected]} />
       <Button changeCount={setSelected} text='next anecdote' count={0} maxNumber={maxNumberForAnecdote} />
       <h1>give feedback</h1>
       <Button changeCount={setGood} text='good' count={good} />
