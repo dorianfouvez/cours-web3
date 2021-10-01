@@ -32,9 +32,19 @@ function App() {
 }
 
 const Statistics = (props) => {
+  let isEmpty = true;
+  props.all.forEach(prop => {
+    if(prop.counter !== 0 && !isNaN(prop.counter)) {
+      isEmpty = false;
+      console.log(prop.counter, prop.counter !== 0, !isNaN(prop.counter));
+    }
+  });
+  if (isEmpty) {
+    return <div>No feedback given</div>;
+  }
   // Ici on change Toutes les props lors d'un changement,
   // donc cela va, mais si il y a des renders separer, il faut eviter le map.
-  return props.all.map(statistic => <><Statistic text={statistic.text} counter={statistic.counter} /><br/></>);
+  return props.all.map((statistic, i) => <><Statistic key={i} text={statistic.text} counter={statistic.counter} /><br/></>);
 }
 
 export default App;
