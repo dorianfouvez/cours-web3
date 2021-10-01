@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Button from '../Button/Button';
-import Display from '../Display/Display';
+import Statistic from '../Statistic/Statistic';
 
 function App() {
   // save clicks of each button to its own state
@@ -17,12 +17,12 @@ function App() {
       <Button changeCount={setNeutral} text='neutral' count={neutral} />
       <Button changeCount={setBad} text='bad' count={bad} />
       <h1>statistics</h1>
-      <Display text='good' counter={good} /><br/>
-      <Display text='neutral' counter={neutral} /><br/>
-      <Display text='bad' counter={bad} /><br/>
-      <Display text='all' counter={allStatistics} /><br/>
-      <Display text='average' counter={(good + neutral*0 + -bad)/allStatistics} /><br/>
-      <Display text='positive' counter={good/allStatistics} /><br/>
+      <Statistic text='good' counter={good} /><br/>
+      <Statistic text='neutral' counter={neutral} /><br/>
+      <Statistic text='bad' counter={bad} /><br/>
+      <Statistic text='all' counter={allStatistics} /><br/>
+      <Statistic text='average' counter={(good + neutral*0 + -bad)/allStatistics} /><br/>
+      <Statistic text='positive' counter={good/allStatistics} /><br/>
     </div>
   );
 }
