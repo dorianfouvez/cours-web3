@@ -10,6 +10,15 @@ function App() {
 
   const allStatistics = good + neutral + bad;
 
+  const all = [
+    { text: 'good', counter: good },
+    { text: 'neutral', counter: neutral },
+    { text: 'bad', counter: bad },
+    { text: 'all', counter: allStatistics },
+    { text: 'average', counter: (good + neutral*0 + -bad)/allStatistics },
+    { text: 'positive', counter: good/allStatistics },
+  ];
+
   return (
     <div>
       <h1>give feedback</h1>
@@ -17,14 +26,15 @@ function App() {
       <Button changeCount={setNeutral} text='neutral' count={neutral} />
       <Button changeCount={setBad} text='bad' count={bad} />
       <h1>statistics</h1>
-      <Statistic text='good' counter={good} /><br/>
-      <Statistic text='neutral' counter={neutral} /><br/>
-      <Statistic text='bad' counter={bad} /><br/>
-      <Statistic text='all' counter={allStatistics} /><br/>
-      <Statistic text='average' counter={(good + neutral*0 + -bad)/allStatistics} /><br/>
-      <Statistic text='positive' counter={good/allStatistics} /><br/>
+      <Statistics all={all} />
     </div>
   );
+}
+
+const Statistics = (props) => {
+  // Ici on change Toutes les props lors d'un changement,
+  // donc cela va, mais si il y a des renders separer, il faut eviter le map.
+  return props.all.map(statistic => <><Statistic text={statistic.text} counter={statistic.counter} /><br/></>);
 }
 
 export default App;
