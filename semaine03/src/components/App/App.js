@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Button from '../Button/Button';
-import Statistic from '../Statistic/Statistic';
+import Statistics from '../Statistics/Statistics';
 
 function App() {
   // save clicks of each button to its own state
@@ -16,7 +16,7 @@ function App() {
     { text: 'bad', counter: bad },
     { text: 'all', counter: allStatistics },
     { text: 'average', counter: (good + neutral*0 + -bad)/allStatistics },
-    { text: 'positive', counter: good/allStatistics, signe:"%" },
+    { text: 'positive', counter: (good/allStatistics)*100, signe:"%" },
   ];
 
   return (
@@ -26,28 +26,9 @@ function App() {
       <Button changeCount={setNeutral} text='neutral' count={neutral} />
       <Button changeCount={setBad} text='bad' count={bad} />
       <h1>statistics</h1>
-      <table><tbody><Statistics all={all} /></tbody></table>
+      <Statistics all={all} />
     </div>
   );
-}
-
-const Statistics = (props) => {
-  let isEmpty = true;
-  props.all.forEach(prop => {
-    if(prop.counter !== 0 && !isNaN(prop.counter)) {
-      isEmpty = false;
-    }
-  });
-  if (isEmpty) {
-    return <tr><td>No feedback given</td></tr>;
-  }
-  // Ici on change Toutes les props lors d'un changement,
-  // donc cela va, mais si il y a des renders separer, il faut eviter le map.
-  return props.all.map((statistic, i) => {
-    if(statistic.signe) 
-      return <tr key={i}><Statistic text={statistic.text} counter={statistic.counter} signe={statistic.signe} /></tr>;
-    return <tr key={i}><Statistic text={statistic.text} counter={statistic.counter} /></tr>;
-  });
 }
 
 export default App;
