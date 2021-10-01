@@ -40,12 +40,22 @@ function App() {
     setVotes(copy);
   };
 
+  const findMostVoted = () => {
+    let max = Math.max(...votes);
+    console.log(max);
+    return votes.indexOf(max);
+  }
+
   return (
     <div>
+      <h1>anecdote of the day</h1>
       <div>{anecdotes[selected]}</div>
       <div>has {votes[selected]} votes</div>
       <Button changeCount={handleVotes} text='vote' count={votes[selected]} />
       <Button changeCount={setSelected} text='next anecdote' count={0} maxNumber={maxNumberForAnecdote} />
+      <h1>anecdote with most votes</h1>
+      <div>{anecdotes[findMostVoted()]}</div>
+      <div>has {votes[findMostVoted()]} votes</div>
       <h1>give feedback</h1>
       <Button changeCount={setGood} text='good' count={good} />
       <Button changeCount={setNeutral} text='neutral' count={neutral} />
