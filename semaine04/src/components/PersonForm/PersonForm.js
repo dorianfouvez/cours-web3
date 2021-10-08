@@ -1,14 +1,22 @@
 import React from 'react'
 
-const PersonForm = ({ onSubmit, inputs = [] }) => {
-  return (
-    <form onSubmit={onSubmit}>
-        {inputs.map(input => <div key={input.label}>{input.label}: <input value={input.value} onChange={input.onChange} /></div>)}
+const PersonForm = ({ addPerson, newName, setNewName, newNumber, setNewNumber }) => {
+    const handleNameChange = (event) => {
+        setNewName(event.target.value)
+    }
+    const handleNumberChange = (event) => {
+        setNewNumber(event.target.value)
+    }
+
+    return (
+    <form onSubmit={addPerson}>
+        <div>name: <input value={newName} onChange={handleNameChange} /></div>
+        <div>number: <input value={newNumber} onChange={handleNumberChange} /></div>
         <div>
-          <button type="submit">add</button>
+            <button type="submit">add</button>
         </div>
-      </form>
-  )
+        </form>
+    )
 }
 
 export default PersonForm
