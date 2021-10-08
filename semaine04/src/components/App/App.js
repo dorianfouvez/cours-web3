@@ -38,7 +38,7 @@ const App = () => {
   const addPerson = (event) => {
     event.preventDefault()
 
-    if(persons.find(person => person.name === newName)){
+    if(persons.find(person => person.name.toLowerCase() === newName.toLowerCase())){
       window.alert(`${newName} is already added to phonebook`);
       return;
     }
@@ -53,7 +53,7 @@ const App = () => {
     setNewNumber('')
   }
 
-  const filtredPersons = persons.filter(person => person.name.match(`.*${filter}.*`));
+  const filtredPersons = persons.filter(person => person.name.toLowerCase().match(`.*${filter.toLowerCase()}.*`));
 
   return (
     <div>
