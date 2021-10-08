@@ -6,15 +6,15 @@ import Persons from '../Persons/Persons'
 
 const App = () => {
 
-  const fetchPersons = () => {
+  const fetchInfosFrom = (url) => {
     axios
-      .get('http://localhost:3001/persons')
+      .get(url)
       .then(response => {
         setPersons(response.data)
       })
   }
 
-  useEffect(() => fetchPersons(), [])
+  useEffect(() => fetchInfosFrom('http://localhost:3001/persons'), [])
 
   const [ persons, setPersons ] = useState([]) 
   const [ newName, setNewName ] = useState('')
