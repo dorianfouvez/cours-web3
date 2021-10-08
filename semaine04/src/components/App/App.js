@@ -5,6 +5,15 @@ import PersonForm from '../PersonForm/PersonForm'
 import Persons from '../Persons/Persons'
 
 const App = () => {
+  
+  useEffect(() => {
+    axios
+      .get('http://localhost:3001/persons')
+      .then(response => {
+        setPersons(response.data)
+      })
+  }, [])
+
   const [ persons, setPersons ] = useState([]) 
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
@@ -13,15 +22,17 @@ const App = () => {
   const handleNameChange = (event) => {
     setNewName(event.target.value)
   }
-
   const handleNumberChange = (event) => {
     setNewNumber(event.target.value)
   }
-
   const handleFilterChange = (event) => {
     setNewFilter(event.target.value)
   }
-
+  
+  const inputs = [ { label: 'name', value: newName, onChange: handleNameChange }, 
+    { label: 'number', value: newNumber, onChange: handleNumberChange }
+  ]
+  
   const addPerson = (event) => {
     event.preventDefault()
 
@@ -41,18 +52,6 @@ const App = () => {
   }
 
   const filtredPersons = persons.filter(person => person.name.match(`.*${filter}.*`));
-
-  const inputs = [ { label: 'name', value: newName, onChange: handleNameChange }, 
-    { label: 'number', value: newNumber, onChange: handleNumberChange }
-  ]
-
-  useEffect(() => {
-    axios
-      .get('http://localhost:3001/persons')
-      .then(response => {
-        setPersons(response.data)
-      })
-  }, [])
 
   return (
     <div>
