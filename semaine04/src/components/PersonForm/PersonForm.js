@@ -7,9 +7,18 @@ const PersonForm = ({ addPerson, newName, setNewName, newNumber, setNewNumber })
     const handleNumberChange = (event) => {
         setNewNumber(event.target.value)
     }
+    
+    const handleAddPerson = (event) => {
+        event.preventDefault()
+    
+        addPerson();
+
+        setNewName('')
+        setNewNumber('')
+    }
 
     return (
-    <form onSubmit={addPerson}>
+    <form onSubmit={handleAddPerson}>
         <div>name: <input value={newName} onChange={handleNameChange} /></div>
         <div>number: <input value={newNumber} onChange={handleNumberChange} /></div>
         <div>

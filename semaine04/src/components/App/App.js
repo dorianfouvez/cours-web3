@@ -25,9 +25,8 @@ const App = () => {
     setNewFilter(event.target.value)
   }
   
-  const addPerson = (event) => {
-    event.preventDefault()
-
+  const addPerson = () => {
+    
     if(persons.find(person => person.name.toLowerCase() === newName.toLowerCase())){
       window.alert(`${newName} is already added to phonebook`);
       return;
@@ -39,8 +38,6 @@ const App = () => {
     }
   
     setPersons(persons.concat(personObject))
-    setNewName('')
-    setNewNumber('')
   }
 
   const filtredPersons = persons.filter(person => person.name.toLowerCase().includes(filter.toLowerCase()));
