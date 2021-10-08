@@ -26,7 +26,6 @@ const App = () => {
   }
   
   const addPerson = () => {
-    
     if(persons.find(person => person.name.toLowerCase() === newName.toLowerCase())){
       window.alert(`${newName} is already added to phonebook`);
       return;
