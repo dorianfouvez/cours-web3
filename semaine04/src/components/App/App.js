@@ -5,14 +5,16 @@ import PersonForm from '../PersonForm/PersonForm'
 import Persons from '../Persons/Persons'
 
 const App = () => {
-  
-  useEffect(() => {
+
+  const fetchPersons = () => {
     axios
       .get('http://localhost:3001/persons')
       .then(response => {
         setPersons(response.data)
       })
-  }, [])
+  }
+
+  useEffect(() => fetchPersons(), [])
 
   const [ persons, setPersons ] = useState([]) 
   const [ newName, setNewName ] = useState('')
