@@ -7,7 +7,6 @@ const PersonForm = ({ addPerson, newName, setNewName, newNumber, setNewNumber })
     const handleNumberChange = (event) => {
         setNewNumber(event.target.value)
     }
-    
     const handleAddPerson = (event) => {
         event.preventDefault()
     
