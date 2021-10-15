@@ -5,8 +5,10 @@ import Opinion from '../Opinion/Opinion'
 const Opinions = () => {
   const { opinions } = useContext(OpinionsContext);
 
+  let filteredOpinions = opinions.sort((a,b) => b.votes - a.votes);
+
   return (
-    <div>{opinions.map(opinion => <Opinion key={opinion.label} opinion={opinion} /> )}</div>
+    <div>{filteredOpinions.map(opinion => <Opinion key={opinion.label} opinion={opinion} /> )}</div>
   )
 }
 

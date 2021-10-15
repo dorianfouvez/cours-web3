@@ -1,6 +1,9 @@
 import React from "react";
 import Opinions from "../Opinions/Opinions";
 import OpinionForm from "../OpinionForm/OpinionForm";
+import ButtonLight from "../Button/ButtonLight";
+import ButtonDark from "../Button/ButtonDark";
+import ButtonToggle from "../Button/ButtonToggle";
 
 function App() {
   return (
@@ -9,7 +12,7 @@ function App() {
       <OpinionForm />
       <br/>
       <br/>
-      <footer><button>Light</button><button>Dark</button><button>Toggle</button></footer>
+      <footer><ButtonLight /><ButtonDark /><ButtonToggle /></footer>
     </div>
   );
 }
