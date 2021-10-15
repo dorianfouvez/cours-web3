@@ -23,7 +23,7 @@ const PersonForm = ({ addPerson, newName, setNewName, newNumber, setNewNumber })
         <div>
             <button type="submit">add</button>
         </div>
-        </form>
+    </form>
     )
 }
 
