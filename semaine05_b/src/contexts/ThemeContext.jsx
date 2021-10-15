@@ -8,8 +8,8 @@ const ProviderWrapper = (props) => {
 
     const setDarkTheme = () => {
         const darkTheme = { 
-            backgroundColor: 'dark', 
-            primaryTextColor: 'white', 
+            backgroundColor: '#000000', 
+            primaryTextColor: '#ffffff', 
             secondaryTextColor: 'gray', 
             linkColor: 'red' 
         };
@@ -19,8 +19,8 @@ const ProviderWrapper = (props) => {
 
     const setLightTheme = () => {
         const lightTheme = { 
-            backgroundColor: 'white', 
-            primaryTextColor: 'dark', 
+            backgroundColor: '#ffffff', 
+            primaryTextColor: '#000000', 
             secondaryTextColor: 'gray', 
             linkColor: 'blue' 
         };
@@ -29,7 +29,7 @@ const ProviderWrapper = (props) => {
     };
 
     const toggleTheme = () => {
-        if(theme.backgroundColor === 'white'){
+        if(theme.backgroundColor === '#ffffff'){
             setDarkTheme()
         }else{
             setLightTheme();
