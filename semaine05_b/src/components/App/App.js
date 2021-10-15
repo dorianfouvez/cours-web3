@@ -7,6 +7,9 @@ function App() {
     <div className="App">
       <Opinions />
       <OpinionForm />
+      <br/>
+      <br/>
+      <footer><button>Light</button><button>Dark</button><button>Toggle</button></footer>
     </div>
   );
 }

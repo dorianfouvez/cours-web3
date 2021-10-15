@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import OpinionsContext from "../../contexts/OpinionsContext";
 
-const PersonForm = () => {
+const OpinionForm = () => {
     const { newOpinion, betterSetNewOpinion, addOpinion } = useContext(OpinionsContext);
 
     const handleOpinionChange = (event) => {
@@ -26,4 +26,4 @@ const PersonForm = () => {
     )
 }
 
-export default PersonForm
+export default OpinionForm
