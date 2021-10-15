@@ -18,7 +18,7 @@ const ProviderWrapper = (props) => {
             votes: 1,
         };
         
-        setOpinions(opinions.concat(opinionObject));
+        setOpinions(opinions.concat(opinionObject)); //setOpinions([...opinions, opinionObject])
     }
 
     const betterSetNewOpinion = (newValue) => {
