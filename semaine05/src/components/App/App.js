@@ -1,16 +1,18 @@
 import React from "react";
-import Button from "../Button/Button";
-import ButtonLabeled from "../ButtonLabeled/ButtonLabeled";
+import ButtonBad from "../Button/ButtonBad";
+import ButtonGood from "../Button/ButtonGood";
+import ButtonOk from "../Button/ButtonOk";
+import ButtonResetScore from "../Button/ButtonResetScore";
 
 function App() {
   return (
     <div className="App">
       <ul>
-        <ButtonLabeled label='Good' />
-        <ButtonLabeled label='Ok' />
-        <ButtonLabeled label='Bad' />
+        <ButtonGood />
+        <ButtonOk />
+        <ButtonBad />
       </ul>
-      <Button text='Reset Score'/>
+      <ButtonResetScore />
     </div>
   );
 }
