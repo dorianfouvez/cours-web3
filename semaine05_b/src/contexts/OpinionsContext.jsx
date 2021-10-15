@@ -28,7 +28,7 @@ const ProviderWrapper = (props) => {
     const setVotes = (opinionLabel) => {
         let indexOpinionToUpdate = opinions.findIndex(opinion => opinion.label === opinionLabel);
         let opinionToUpdate = opinions[indexOpinionToUpdate];
-        opinionToUpdate.votes = opinionToUpdate.votes + 1;
+        opinionToUpdate.votes++;
 
         let opinionsCopy = [...opinions];
         opinionsCopy[indexOpinionToUpdate] = opinionToUpdate;
