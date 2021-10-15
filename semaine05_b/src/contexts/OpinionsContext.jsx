@@ -26,9 +26,14 @@ const ProviderWrapper = (props) => {
     }
 
     const setVotes = (opinionLabel) => {
-        let opinionUpdated = opinions.find(opinion => opinion.label === opinionLabel);
+        let indexOpinionToUpdate = opinions.findIndex(opinion => opinion.label === opinionLabel);
+        let opinionToUpdate = opinions[indexOpinionToUpdate];
+        opinionToUpdate.votes++;
 
-        setOpinions([...opinions, opinionUpdated]);
+        let opinionsCopy = opinions;
+        opinionsCopy[indexOpinionToUpdate] = opinionToUpdate;
+
+        setOpinions(opinionsCopy);
     }
     
     const exposedValue = {
