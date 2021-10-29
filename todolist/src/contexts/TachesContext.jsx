@@ -51,24 +51,20 @@ const ProviderWrapper = (props) => {
 
     const betterSetTaches = (id, tacheLabel, tacheState, tachePriority) => {
         let indexTacheToUpdate = taches.findIndex(tache => tache.id === id);
-        let tacheToUpdate = taches[indexTacheToUpdate];
+        let tacheInitial = taches[indexTacheToUpdate];
+
+        let tacheToUpdate = {...tacheInitial};
+        console.log(id);
 
         // Modifications
         tacheToUpdate.label = tacheLabel;
         tacheToUpdate.state = tacheState;
         tacheToUpdate.priority = tachePriority;
 
-        let tachesCopy = [...taches];
-        tachesCopy[indexTacheToUpdate] = tacheToUpdate;
-
-        setTaches(tachesCopy);
-
-        console.log("Taches copy: ", tachesCopy);
-
         // Update de la db.
         tacheService.update(tacheToUpdate)
             .then(newTache => {
-                console.log("After update: ", newTache);
+                let tachesCopy = [...taches];
                 tachesCopy[indexTacheToUpdate] = newTache;
                 setTaches(tachesCopy);
         });
@@ -77,7 +73,7 @@ const ProviderWrapper = (props) => {
     const deleteTache = (id) => {
         let indexTacheToDelete = taches.findIndex(tache => tache.id === id);
         let tachesCopy = [...taches];
-        tachesCopy.splice(id, 1);
+        tachesCopy.splice(indexTacheToDelete, 1);
 
         // Delete de la db.
         tacheService.Delete(id)

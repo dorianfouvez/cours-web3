@@ -10,8 +10,9 @@ function App() {
 
   return (
     <div>
-      <Taches />
+      <Taches done={false} />
       <TacheAddForm />
+      <Taches done={true} />
     </div>
   );
 }

@@ -5,6 +5,24 @@
       "label": "json-server",
       "state": false,
       "priority": "Moyenne"
+    },
+    {
+      "id": 1,
+      "label": "wdasdfgv",
+      "state": false,
+      "priority": "Basse"
+    },
+    {
+      "id": 2,
+      "label": "qwesdf",
+      "state": false,
+      "priority": "Haute"
+    },
+    {
+      "id": 3,
+      "label": "fgfdvg",
+      "state": true,
+      "priority": "Haute"
     }
   ]
 }

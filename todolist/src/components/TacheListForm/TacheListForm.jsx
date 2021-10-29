@@ -20,6 +20,7 @@ const TacheListForm = ({ tache }) => {
 
   const handlePriorityChange = (event) => {
     setPriority(event.target.value);
+    console.log(tache.id);
     betterSetTaches(tache.id, label, checked, event.target.value);
   };
 
