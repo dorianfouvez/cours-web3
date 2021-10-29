@@ -81,8 +81,6 @@ const ProviderWrapper = (props) => {
                 setTaches(tachesCopy);
         });
     }
-
-    //faut il des useState pour state et priority
     
     const exposedValue = {
         initialLoad,
