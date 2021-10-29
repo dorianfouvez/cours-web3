@@ -74,7 +74,17 @@ const ProviderWrapper = (props) => {
         });
     }
 
-    // Delete
+    const deleteTache = (id) => {
+        let indexTacheToDelete = taches.findIndex(tache => tache.id === id);
+        let tachesCopy = [...taches];
+        tachesCopy.splice(id, 1);
+
+        // Delete de la db.
+        tacheService.Delete(id)
+            .then(() => {
+                setTaches(tachesCopy);
+        });
+    }
 
     //faut il des useState pour state et priority
     
@@ -86,6 +96,7 @@ const ProviderWrapper = (props) => {
         addTache,
         newTache,
         betterSetNewTache, // Debounce a retourner
+        deleteTache,
     }
     
     return <Context.Provider value={exposedValue}>

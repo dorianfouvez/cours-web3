@@ -6,7 +6,7 @@ const TacheListForm = ({ tache }) => {
   const [priority, setPriority] = useState(tache.priority);
   const [checked, setChecked] = useState(tache.state);
 
-  const { betterSetTaches } = useContext(TachesContext);
+  const { betterSetTaches, deleteTache } = useContext(TachesContext);
 
   const handleCheckBoxChange = (event) => {
     setChecked(!checked);
@@ -24,7 +24,7 @@ const TacheListForm = ({ tache }) => {
   };
 
   const handleOnSubmit = (event) => {
-    // Delete
+    deleteTache(tache.id);
   };
 
   return (
@@ -36,7 +36,7 @@ const TacheListForm = ({ tache }) => {
         <option>Basse</option>
       </select>
       <input type="checkbox" checked={checked} onChange={handleCheckBoxChange} />
-      <button type="submit" onSubmit={handleOnSubmit}>Delete</button>
+      <button type="button" onClick={handleOnSubmit}>Delete</button>
     </form>
   )
 }
