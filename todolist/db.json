@@ -1,0 +1,16 @@
+{
+  "taches": [
+    {
+      "id": 0,
+      "label": "json-server",
+      "state": false,
+      "priority": "Moyenne"
+    },
+    {
+      "id": 1,
+      "label": "asdfft",
+      "state": false,
+      "priority": "Haute"
+    }
+  ]
+}
