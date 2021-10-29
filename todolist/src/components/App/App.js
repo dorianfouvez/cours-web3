@@ -1,18 +1,19 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import TacheAddForm from "../TacheAddForm/TacheAddForm";
 import Taches from "../Taches/Taches";
 import TachesContext from "../../contexts/TachesContext";
+import ButtonShowDoneList from "../ButtonShowDoneList/ButtonShowDoneList";
 
 function App() {
 
-  const { initialLoad } = useContext(TachesContext);
-  useEffect(() => initialLoad(), []);
+  const { showDoneList } = useContext(TachesContext);
 
   return (
     <div>
       <Taches done={false} />
       <TacheAddForm />
-      <Taches done={true} />
+      <ButtonShowDoneList />
+      <Taches done={true} show={showDoneList} />
     </div>
   );
 }

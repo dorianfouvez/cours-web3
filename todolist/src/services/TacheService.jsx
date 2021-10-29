@@ -1,5 +1,5 @@
-import axios from 'axios'
-const baseUrl = 'http://localhost:3001/taches'
+import axios from 'axios';
+const baseUrl = 'http://localhost:3001/taches';
 
 const getAll = () => {
   const request = axios.get(baseUrl)
@@ -21,4 +21,11 @@ const Delete = (id) => {
     return request.then(response => response.data)
 }
 
-export default { getAll, create, update, Delete }
+const TachesAPI = {
+  getAll,
+  create,
+  Delete,
+  update
+}
+
+export default TachesAPI;

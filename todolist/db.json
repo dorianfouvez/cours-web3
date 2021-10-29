@@ -1,26 +1,20 @@
 {
   "taches": [
     {
-      "id": 0,
-      "label": "json-server",
-      "state": false,
-      "priority": "Moyenne"
-    },
-    {
       "id": 1,
-      "label": "wdasdfgv",
+      "label": "test",
       "state": false,
       "priority": "Basse"
     },
     {
       "id": 2,
-      "label": "qwesdf",
+      "label": "sadf",
       "state": false,
-      "priority": "Haute"
+      "priority": "Moyenne"
     },
     {
       "id": 3,
-      "label": "fgfdvg",
+      "label": "asd",
       "state": true,
       "priority": "Haute"
     }

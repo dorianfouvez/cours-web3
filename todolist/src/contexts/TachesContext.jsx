@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import tacheService from '../services/TacheService'
 
 const Context = React.createContext(null)
@@ -7,6 +7,7 @@ const ProviderWrapper = (props) => {
 
     const [ taches, setTaches ] = useState([]);
     const [ newTache, setNewTache ] = useState(""); // Dans le form
+    const [ showDoneList, setShowDoneList ] = useState(false);
 
     const initialLoad = () => {
         tacheService.getAll()
@@ -14,6 +15,7 @@ const ProviderWrapper = (props) => {
             setTaches(initList);
         });
     }
+    useEffect(() => initialLoad(), []);
 
     const addTache = () => {
         //Verificatoin pas double nom
@@ -54,7 +56,6 @@ const ProviderWrapper = (props) => {
         let tacheInitial = taches[indexTacheToUpdate];
 
         let tacheToUpdate = {...tacheInitial};
-        console.log(id);
 
         // Modifications
         tacheToUpdate.label = tacheLabel;
@@ -91,6 +92,8 @@ const ProviderWrapper = (props) => {
         newTache,
         betterSetNewTache, // Debounce a retourner
         deleteTache,
+        showDoneList,
+        setShowDoneList,
     }
     
     return <Context.Provider value={exposedValue}>
