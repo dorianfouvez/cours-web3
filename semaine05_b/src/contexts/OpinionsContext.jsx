@@ -8,16 +8,19 @@ const ProviderWrapper = (props) => {
     const [newOpinion, setNewOpinion] = useState('')
 
     const addOpinion = () => {
+        //Verificatoin pas double nom
         if(opinions.find(opinion => opinion.label.toLowerCase() === newOpinion.toLowerCase())){
             window.alert(`${newOpinion} is already added to the list`);
             return;
         }
       
+        //Creation de l'opinion
         const opinionObject = {
             label: newOpinion,
             votes: 1,
         };
         
+        //SET = rerender avec une copie
         setOpinions(opinions.concat(opinionObject)); //setOpinions([...opinions, opinionObject])
     }
 
