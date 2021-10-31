@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import tacheService from '../services/TacheService'
+import React, { useState, useEffect, useCallback } from "react";
+import tacheService from '../services/TacheService';
+import debounce from 'lodash.debounce';
 
 const Context = React.createContext(null)
    
@@ -64,12 +65,18 @@ const ProviderWrapper = (props) => {
 
         // Update de la db.
         tacheService.update(tacheToUpdate)
-            .then(newTache => {
-                let tachesCopy = [...taches];
-                tachesCopy[indexTacheToUpdate] = newTache;
-                setTaches(tachesCopy);
+        .then(newTache => {
+            let tachesCopy = [...taches];
+            tachesCopy[indexTacheToUpdate] = newTache;
+            setTaches(tachesCopy);
         });
     }
+
+    const debounceBetterSetTaches = useCallback(
+        debounce((id, tacheLabel, tacheState, tachePriority) => 
+            betterSetTaches(id, tacheLabel, tacheState, tachePriority), 
+        300), 
+    [taches]);
 
     const deleteTache = (id) => {
         let indexTacheToDelete = taches.findIndex(tache => tache.id === id);
@@ -88,6 +95,7 @@ const ProviderWrapper = (props) => {
         taches,
         setTaches,
         betterSetTaches,
+        debounceBetterSetTaches,
         addTache,
         newTache,
         betterSetNewTache, // Debounce a retourner

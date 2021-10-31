@@ -6,21 +6,21 @@ const TacheListForm = ({ tache }) => {
   const [priority, setPriority] = useState(tache.priority);
   const [checked, setChecked] = useState(tache.state);
 
-  const { betterSetTaches, deleteTache } = useContext(TachesContext);
+  const { deleteTache, debounceBetterSetTaches } = useContext(TachesContext);
 
   const handleCheckBoxChange = (event) => {
     setChecked(!checked);
-    betterSetTaches(tache.id, label, event.target.checked, priority);
+    debounceBetterSetTaches(tache.id, label, event.target.checked, priority);
   };
 
   const handleLabelChange = (event) => {
     setLabel(event.target.value);
-    betterSetTaches(tache.id, event.target.value, checked, priority);
+    debounceBetterSetTaches(tache.id, event.target.value, checked, priority);
   };
-
+  
   const handlePriorityChange = (event) => {
     setPriority(event.target.value);
-    betterSetTaches(tache.id, label, checked, event.target.value);
+    debounceBetterSetTaches(tache.id, label, checked, event.target.value);
   };
 
   const handleOnSubmit = (event) => {
