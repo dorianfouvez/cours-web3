@@ -71,22 +71,22 @@ app.post('/api/persons', (request, response) => {
     const body = request.body;
   
     if (!body.content) {
-      return response.status(400).json({ 
+      return response.status(422).json({ 
         error: 'content missing' 
       });
     };
     if (!body.content.name) {
-        return response.status(400).json({ 
+        return response.status(422).json({ 
           error: 'name is missing' 
         });
     };
     if (persons.find(person => person.name === body.content.name)) {
-        return response.status(400).json({ 
+        return response.status(422).json({ 
           error: 'name must be unique and is already in use' 
         });
     };
     if (!body.content.number) {
-        return response.status(400).json({ 
+        return response.status(422).json({ 
           error: 'number is missing' 
         });
     };
