@@ -8,7 +8,18 @@ morgan.token('body', function getBody (req) {
     return JSON.stringify(req.body);
 });
 
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body')); // tiny =>     :method :url :status :res[content-length] - :response-time ms
+morgan.token('x-user-email', function getBody (req) {
+    return JSON.stringify(req.currentUser);
+});
+
+// Middleware   =>  https://expressjs.com/fr/guide/using-middleware.html
+app.use(function (req, res, next) {
+    const email = req.header("X-USER-EMAIL");
+    if(email) req.currentUser = { email };
+    next();
+});
+
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body :x-user-email')); // tiny =>     :method :url :status :res[content-length] - :response-time ms
 
 let persons = [
     {

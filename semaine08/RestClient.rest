@@ -8,6 +8,7 @@ DELETE {{host}}/api/persons/4
 ###
 POST {{host}}/api/persons/ HTTP/1.1
 content-type: {{contentType}}
+X-USER-EMAIL: test@hotmail.com
 
 {
     "content": {
