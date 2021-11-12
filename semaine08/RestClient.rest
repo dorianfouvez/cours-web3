@@ -1,8 +1,13 @@
-DELETE http://localhost:3001/api/persons/4
+@hostname = http://localhost
+@port = 3001
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+
+DELETE {{host}}/api/persons/4
 
 ###
-POST http://localhost:3001/api/persons/ HTTP/1.1
-content-type: application/json
+POST {{host}}/api/persons/ HTTP/1.1
+content-type: {{contentType}}
 
 {
     "content": {
