@@ -1,14 +1,14 @@
 const express = require('express');
 const app = express();
-var morgan = require('morgan');
+const morgan = require('morgan');
 
 app.use(express.json());
-
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body')); // tiny =>     :method :url :status :res[content-length] - :response-time ms
 
 morgan.token('body', function getBody (req) {
     return JSON.stringify(req.body);
 });
+
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body')); // tiny =>     :method :url :status :res[content-length] - :response-time ms
 
 let persons = [
     {
