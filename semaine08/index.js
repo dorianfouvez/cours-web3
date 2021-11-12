@@ -1,4 +1,3 @@
-const { response } = require('express');
 const express = require('express');
 const app = express();
 
@@ -56,6 +55,46 @@ app.delete('/api/persons/:id', (request, response) => {
   
     response.status(204).end();
 });
+
+const generateId = () => {
+    const max = 999999;
+    const id = Math.floor(Math.random() * max + 5432);
+
+    const personsFinded = persons.find(person => person.id === id);
+    if(personsFinded){
+        return generateId();
+    }
+    return id;
+}
+  
+app.post('/api/persons', (request, response) => {
+    const body = request.body;
+  
+    if (!body.content) {
+      return response.status(400).json({ 
+        error: 'content missing' 
+      });
+    };
+  
+    /*const person = {
+      content: body.content,
+      important: body.important || false,
+      date: new Date(),
+      id: generateId(),
+    };*/
+
+    const person = { 
+        "id": generateId(),
+        "name":  body.content.name, 
+        "number":  body.content.number,
+    };
+  
+    persons = persons.concat(person);
+  
+    response.json(person);
+});
+
+
 
 const PORT = 3001;
 app.listen(PORT, () => {
