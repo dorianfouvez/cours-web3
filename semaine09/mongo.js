@@ -8,9 +8,9 @@ if (process.argv.length < 3) {
 const password = process.argv[2];
 
 const url =
-  `mongodb+srv://fullstack:${password}@cluster0-ostce.mongodb.net/phonebook-app?retryWrites=true`;
+  `mongodb+srv://react_courses:${password}@cluster0.ezt7n.mongodb.net/phonebook-app?retryWrites=true`;
 
-mongoose.connect(url);
+mongoose.connect(url).catch(e => print(e));
 
 const personSchema = new mongoose.Schema({
   id: Number,
