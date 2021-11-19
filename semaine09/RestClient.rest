@@ -1,0 +1,18 @@
+@hostname = http://localhost
+@port = 3001
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+
+DELETE {{host}}/api/persons/4
+
+###
+POST {{host}}/api/persons/ HTTP/1.1
+content-type: {{contentType}}
+X-USER-EMAIL: test@hotmail.com
+
+{
+    "content": {
+        "name": "Nanatole",
+        "number": "0444 44 47 19"
+    }
+}
