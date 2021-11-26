@@ -3,7 +3,7 @@
 @host = {{hostname}}:{{port}}
 @contentType = application/json
 
-DELETE {{host}}/api/persons/4
+DELETE {{host}}/api/persons/619765efbe7df05a7afd6806
 
 ###
 POST {{host}}/api/persons/ HTTP/1.1
@@ -11,8 +11,26 @@ content-type: {{contentType}}
 X-USER-EMAIL: test@hotmail.com
 
 {
-    "content": {
-        "name": "Nanatole",
-        "number": "0444 44 47 19"
-    }
+    "name": "Nanatole",
+    "number": "0444 44 47 19"
+}
+
+###
+POST {{host}}/api/persons/ HTTP/1.1
+content-type: {{contentType}}
+X-USER-EMAIL: test@hotmail.com
+
+{
+    "name": "IsNotExiste",
+    "number": "0444 44 47 19"
+}
+
+### Try update
+POST {{host}}/api/persons/ HTTP/1.1
+content-type: {{contentType}}
+X-USER-EMAIL: test@hotmail.com
+
+{
+    "name": "IsNotExiste",
+    "number": "0444 44 47 20"
 }
