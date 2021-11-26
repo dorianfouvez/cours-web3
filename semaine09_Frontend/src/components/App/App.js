@@ -44,6 +44,12 @@ const App = () => {
           setPersons(persons.concat(result))
         }
       })
+      .catch(err =>{
+        setNewName(newName);
+        setNewNumber(newNumber);
+        console.log("Frontend", err);
+        window.alert("Something is missing !");
+      });
   }
 
   const filtredPersons = persons.filter(person => person.name.toLowerCase().includes(filter.toLowerCase()));

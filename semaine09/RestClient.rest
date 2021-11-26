@@ -34,3 +34,12 @@ X-USER-EMAIL: test@hotmail.com
     "name": "IsNotExiste",
     "number": "0444 44 47 20"
 }
+
+### Throw error
+POST {{host}}/api/persons/ HTTP/1.1
+content-type: {{contentType}}
+X-USER-EMAIL: test@hotmail.com
+
+{
+    "number": "0444 44 47 20"
+}

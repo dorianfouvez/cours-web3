@@ -5,6 +5,7 @@ const logger = require('./modules/middlewares/logger_middleware').logger;
 const personsRoutes = require('./routes/persons');
 //let persons = require('./db/persons');
 const Person = require('./models/person');
+const errorHandler = require('./errorHandler');
 
 app.use(express.json());
 
@@ -25,3 +26,5 @@ const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+app.use(errorHandler);
