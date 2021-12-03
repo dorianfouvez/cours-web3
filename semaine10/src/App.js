@@ -4,6 +4,9 @@ import {
   Routes, Route, Link, Outlet,
   useParams, useNavigate, useMatch
 } from "react-router-dom"
+import 'antd/dist/antd.css'
+import { Input, Tooltip, Button } from 'antd';
+import { InfoCircleOutlined, UserOutlined, PlusOutlined, QuestionOutlined } from '@ant-design/icons';
 
 const Menu = () => {
   const padding = {
@@ -88,18 +91,24 @@ const CreateNew = (props) => {
       <h2>create a new anecdote</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          content
-          <input name='content' value={content} onChange={(e) => setContent(e.target.value)} />
+          content 
+          <Input name='content' placeholder="Content" value={content} onChange={(e) => setContent(e.target.value)} />
         </div>
         <div>
-          author
-          <input name='author' value={author} onChange={(e) => setAuthor(e.target.value)} />
+          author 
+          <Input name='author' placeholder="Author" value={author} onChange={(e) => setAuthor(e.target.value)} />
+          <Input name='author' placeholder="Author" value={author} onChange={(e) => setAuthor(e.target.value)} 
+            prefix={<UserOutlined className="site-form-item-icon" />}
+            suffix={<Tooltip title="The name of the author"><InfoCircleOutlined style={{ color: 'rgba(0,0,0,.45)' }} /></Tooltip>} />
         </div>
         <div>
-          url for more info
-          <input name='info' value={info} onChange={(e)=> setInfo(e.target.value)} />
+          url for more info 
+          <Input name='info' placeholder="info" value={info} onChange={(e) => setInfo(e.target.value)} 
+            prefix={<QuestionOutlined className="site-form-item-icon" />}
+            suffix={<Tooltip title="The url to find more info"><InfoCircleOutlined style={{ color: 'rgba(0,0,0,.45)' }} /></Tooltip>} />
         </div>
         <button>create</button>
+        <Button type="primary" shape="round" icon={<PlusOutlined />}>Create</Button>
       </form>
     </div>
   )
