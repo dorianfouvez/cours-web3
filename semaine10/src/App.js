@@ -5,10 +5,13 @@ import {
   useParams, useNavigate, useMatch
 } from "react-router-dom"
 import 'antd/dist/antd.css'
-import { Input, Tooltip, Button, Form } from 'antd';
-import { InfoCircleOutlined, UserOutlined, PlusOutlined, QuestionOutlined } from '@ant-design/icons';
+import { Input, Tooltip, Button, Form, Layout, Menu } from 'antd';
+import { InfoCircleOutlined, UserOutlined, PlusOutlined, QuestionOutlined, MenuUnfoldOutlined, MenuFoldOutlined, VideoCameraOutlined, 
+  UploadOutlined } from '@ant-design/icons';
 
-const Menu = () => {
+const { Header, Sider, Content, Footer } = Layout
+
+const Menu2 = () => {
   const padding = {
     paddingRight: 5
   }
@@ -60,7 +63,7 @@ const About = () => {
   )
 }
 
-const Footer = () => {
+const FooterPerso = () => {
   return (
     <div>
       Anecdote app for <a href='https://courses.helsinki.fi/fi/tkt21009'>Full Stack -websovelluskehitys</a>.
@@ -176,17 +179,52 @@ const App = () => {
   const match = useMatch('/anecdotes/:id')
   const anecdote = match ? anecdotes.find(anecdote => anecdote.id === match.params.id) : null
 
+  const [ collapsed, setCollapsed ] = useState(false)
+
+  const toggle = () => setCollapsed(!collapsed);
+
   return (
     <div>
-      <h1>Software anecdotes</h1>
-      <Menu />
-      <Routes>
-        <Route path="/about" element={<About />} />
-        <Route path="/create" element={<CreateNew addNew={addNew} />} />
-        <Route path="/anecdotes/:id" element={<Anecdote anecdote={anecdote} />} />
-        <Route path="/" element={<AnecdoteList anecdotes={anecdotes} notification={notification} />} />
-      </Routes>
-      <Footer />
+      <Layout>
+        <Sider trigger={null} collapsible collapsed={collapsed}>
+          {collapsed ? <h1 style={{color: 'white', textAlign: "center", margin: '17px'}}>S. A.</h1> 
+          : <h1 style={{color: 'white', textAlign: "center", margin: '17px'}}>Software anecdotes</h1>}
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+            <Menu.Item key="1" icon={<UserOutlined />}>
+              <Link to="/">anecdotes</Link>
+            </Menu.Item>
+            <Menu.Item key="2" icon={<VideoCameraOutlined />}>
+              <Link to="/create">create new</Link>
+            </Menu.Item>
+            <Menu.Item key="3" icon={<UploadOutlined />}>
+              <Link to="/about">about</Link>
+            </Menu.Item>
+          </Menu>
+        </Sider>
+        <Layout className="site-layout">
+          <Header className="site-layout-background" style={{ padding: 0 }}>
+            {collapsed ? 
+            <Button type="ghost" htmlType="button" shape="round" onClick={toggle} icon={<MenuUnfoldOutlined style={{color: 'white'}} />} style={{color: 'white'}}></Button> 
+            : <Button type="ghost" htmlType="button" shape="round" onClick={toggle} icon={<MenuFoldOutlined onClick={toggle} />} style={{color: 'white'}}></Button>}
+          </Header>
+          <Content
+            className="site-layout-background"
+            style={{
+              margin: '24px 16px',
+              padding: 24,
+              minHeight: 280,
+            }}
+          >
+            <Routes>
+              <Route path="/about" element={<About />} />
+              <Route path="/create" element={<CreateNew addNew={addNew} />} />
+              <Route path="/anecdotes/:id" element={<Anecdote anecdote={anecdote} />} />
+              <Route path="/" element={<AnecdoteList anecdotes={anecdotes} notification={notification} />} />
+            </Routes>
+          </Content>
+          <Footer style={{ textAlign: 'center' }}><FooterPerso /></Footer>
+        </Layout>
+      </Layout>
     </div>
   )
 }
