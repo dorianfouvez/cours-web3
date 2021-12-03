@@ -5,7 +5,7 @@ import {
   useParams, useNavigate, useMatch
 } from "react-router-dom"
 import 'antd/dist/antd.css'
-import { Input, Tooltip, Button } from 'antd';
+import { Input, Tooltip, Button, Form } from 'antd';
 import { InfoCircleOutlined, UserOutlined, PlusOutlined, QuestionOutlined } from '@ant-design/icons';
 
 const Menu = () => {
@@ -39,7 +39,7 @@ const Anecdote = ({ anecdote }) => {
       <h2>Anecdotes</h2>
       <h4 key={anecdote.id} >{anecdote.content}</h4>
       <p>has {anecdote.votes} votes</p>
-      <p>for more info see {anecdote.info}</p>
+      <p>for more info see <a href={anecdote.info} >{anecdote.info}</a></p>
     </div>
   )
 }
@@ -71,17 +71,9 @@ const Footer = () => {
 }
 
 const CreateNew = (props) => {
-  const [content, setContent] = useState('')
-  const [author, setAuthor] = useState('')
-  const [info, setInfo] = useState('')
-
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const handleFinish = (values) => {
     props.addNew({
-      content,
-      author,
-      info,
+      ...values,
       votes: 0
     })
   }
@@ -89,27 +81,48 @@ const CreateNew = (props) => {
   return (
     <div>
       <h2>create a new anecdote</h2>
-      <form onSubmit={handleSubmit}>
+      <Form
+        name="basic"
+        labelCol={{ span: 7 }}
+        wrapperCol={{ span: 10 }}
+        initialValues={{ remember: true }}
+        onFinish={handleFinish}
+        
+        autoComplete="on"
+      >
         <div>
-          content 
-          <Input name='content' placeholder="Content" value={content} onChange={(e) => setContent(e.target.value)} />
+          <Form.Item
+            label="Content"
+            name="content"
+            rules={[{ required: true, message: 'Please input a content!' }]}
+          >
+            <Input name='content' placeholder="Content"/>
+          </Form.Item>
         </div>
         <div>
-          author 
-          <Input name='author' placeholder="Author" value={author} onChange={(e) => setAuthor(e.target.value)} />
-          <Input name='author' placeholder="Author" value={author} onChange={(e) => setAuthor(e.target.value)} 
-            prefix={<UserOutlined className="site-form-item-icon" />}
-            suffix={<Tooltip title="The name of the author"><InfoCircleOutlined style={{ color: 'rgba(0,0,0,.45)' }} /></Tooltip>} />
+          <Form.Item
+            label="Author"
+            name="author"
+            rules={[{ required: true, message: 'Please input the author!' }]}
+          >
+            <Input name='author' placeholder="Author"
+              prefix={<UserOutlined className="site-form-item-icon" />}
+              suffix={<Tooltip title="The name of the author"><InfoCircleOutlined style={{ color: 'rgba(0,0,0,.45)' }} /></Tooltip>} />
+          </Form.Item>
         </div>
         <div>
-          url for more info 
-          <Input name='info' placeholder="info" value={info} onChange={(e) => setInfo(e.target.value)} 
-            prefix={<QuestionOutlined className="site-form-item-icon" />}
-            suffix={<Tooltip title="The url to find more info"><InfoCircleOutlined style={{ color: 'rgba(0,0,0,.45)' }} /></Tooltip>} />
+          <Form.Item
+            label="Url for more info"
+            name="info"
+            rules={[{ required: true, message: 'Please input the author!' }]}
+          >
+            <Input name='info' placeholder="info"
+              prefix={<QuestionOutlined className="site-form-item-icon" />}
+              suffix={<Tooltip title="The url to find more info"><InfoCircleOutlined style={{ color: 'rgba(0,0,0,.45)' }} /></Tooltip>} />
+          </Form.Item>
         </div>
-        <button>create</button>
-        <Button type="primary" shape="round" icon={<PlusOutlined />}>Create</Button>
-      </form>
+        <Button type="primary" htmlType="submit" shape="round" icon={<PlusOutlined />}>Create</Button>
+      </Form>
     </div>
   )
 
